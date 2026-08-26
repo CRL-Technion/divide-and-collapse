@@ -1,0 +1,2 @@
+{"dataset": "examples", "scenario": "corridor", "num_agents": 2, "agent_idx": 0, "trajectory": [[0, 0], [0, 1], [0, 0], [0, 1], [0, 2]]}
+{"dataset": "examples", "scenario": "corridor", "num_agents": 2, "agent_idx": 1, "trajectory": [[2, 0], [2, 1], [2, 0], [2, 1], [2, 2]]}

@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual envs
+.venv/
+.venv-*/
+venv/
+env/
+
+# Test / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.hypothesis/
+.benchmarks/
+
+# Tooling
+.direnv/
+.envrc.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Experiment artefacts — keep .gitkeep, ignore everything a run produces.
+results/raw/*
+results/tables/*
+results/figures/*.pdf
+results/figures/*.tikz
+!results/**/.gitkeep
+
+# Input schedules are regenerated, never committed: they derive from the
+# POGEMA benchmark (see THIRD-PARTY.md) and run to hundreds of megabytes.
+# Rebuild with scripts/dump_pogema_full.py or dump_pogema_schedules.py.
+benchmarks/schedules/*
+benchmarks/pogema/*
+!benchmarks/schedules/.gitkeep
+!benchmarks/pogema/.gitkeep
+
+# Tang et al.'s Judgelight is fetched by scripts/setup_judgelight.{sh,ps1},
+# never vendored: it carries no upstream license. See THIRD-PARTY.md.
+third_party/judgelight/
+!third_party/SUBMODULE_SHAS.json
+!third_party/.gitkeep

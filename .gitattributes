@@ -1,0 +1,8 @@
+# Normalize line endings so that regenerating a file (for example with
+# examples/data/make_examples.py) is byte-identical on every platform and
+# leaves the working tree clean.
+* text=auto eol=lf
+
+*.png binary
+*.pdf binary
+*.parquet binary

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the paper."
+title: "Divide and Collapse"
+abstract: >-
+  Reference implementation of an exact decomposition of MAPF-Collapse into
+  independent sub-instances: reach sets, the interaction graph, a linear-time
+  per-agent primitive, and C-CBS, an exact CBS adaptation for the coupled
+  residue.
+type: software
+authors:
+  - family-names: Salzman
+    given-names: Oren
+    affiliation: "Technion - Israel Institute of Technology"
+    email: osalzman@cs.technion.ac.il
+license: MIT
+preferred-citation:
+  type: article
+  title: >-
+    Divide and Collapse: MAPF-Collapse via Exact Decomposition into
+    Independent Sub-Instances
+  authors:
+    - family-names: Salzman
+      given-names: Oren
+      affiliation: "Technion - Israel Institute of Technology"
+  year: 2026

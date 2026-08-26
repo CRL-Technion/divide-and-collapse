@@ -1,0 +1,41 @@
+{
+  "captured_on": "2026-06-21",
+  "judgelight": {
+    "url": "https://github.com/TachikakaMin/Judgelight.git",
+    "branch": "main",
+    "sha": "ecb4cbbc4681bca75a916c00e6f60d8241430b66"
+  },
+  "nested_submodules": {
+    "pogema": {
+      "branch": "wafr2026",
+      "sha": "9907fa38fcb5bb3beb4c5bf63db76ee5426653bb"
+    },
+    "pogema-benchmark": {
+      "branch": "wafr2026",
+      "sha": "ea40919170f19a90827244e07f7f0b97869e8c99"
+    },
+    "pogema-toolbox": {
+      "branch": "wafr2026",
+      "sha": "25eaa068eeb6146abd5e1aca9c2ad85647a211ec"
+    }
+  },
+  "scenario_counts": {
+    "01-random":     {"scenarios": 128, "num_agents_grid": [8, 16, 24, 32, 48, 64],   "instances": 768},
+    "02-mazes":      {"scenarios": 128, "num_agents_grid": [8, 16, 24, 32, 48, 64],   "instances": 768},
+    "03-warehouse":  {"scenarios": 128, "num_agents_grid": [32, 64, 96, 128, 160, 192], "instances": 768},
+    "04-movingai":   {"scenarios": 128, "num_agents_grid": [64, 128, 192, 256],        "instances": 512},
+    "05-puzzles":    {"scenarios": 160, "num_agents_grid": [2, 3, 4],                  "instances": 480}
+  },
+  "total_mapf_instances": 3296,
+  "out_of_scope": {
+    "06-pathfinding": {
+      "scenarios": 80,
+      "num_agents_grid": 1,
+      "note": "single-agent pathfinding; not a MAPF instance set, ignored by the framework"
+    }
+  },
+  "notes": [
+    "Each scenario carries agents_xy and targets_xy at the MAXIMUM grid value; a num_agents=k instance is obtained by truncating to the first k entries.",
+    "Re-record SHAs after any upstream branch movement on TachikakaMin/Judgelight or its three submodules."
+  ]
+}

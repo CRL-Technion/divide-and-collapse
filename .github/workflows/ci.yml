@@ -1,0 +1,60 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Nightly stress run at 04:00 UTC — gives the Hypothesis fuzzer the
+    # higher-coverage ``stress-ci`` profile (500 examples) overnight.
+    - cron: "0 4 * * *"
+
+jobs:
+  lint-test:
+    name: lint + fast tests
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python-version: ["3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: set up python
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: install project
+        run: uv pip install --system -e ".[dev]"
+
+      - name: ruff
+        run: uv run --no-project ruff check src tests examples
+
+      - name: black
+        run: uv run --no-project black --check src tests examples
+
+      - name: mypy
+        run: uv run --no-project mypy
+
+      - name: pytest (not slow)
+        run: uv run --no-project pytest -m "not slow"
+
+  stress:
+    name: stress tests (PR + nightly)
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    env:
+      # Nightly uses the higher-coverage profile (500 examples); PRs
+      # use the default ``stress-dev`` profile (50 examples) to keep
+      # PR latency low.
+      MAPFC_HYPOTHESIS_PROFILE: ${{ github.event_name == 'schedule' && 'stress-ci' || 'stress-dev' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+      - run: uv python install 3.12
+      - run: uv pip install --system -e ".[dev]"
+      - run: uv run --no-project pytest -m slow

@@ -1,0 +1,6 @@
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 0, "trajectory": [[0, 1], [1, 1], [2, 1], [1, 1], [1, 2]]}
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 1, "trajectory": [[1, 1], [1, 0], [1, 1], [1, 0], [1, 1]]}
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 2, "trajectory": [[5, 5], [5, 6], [5, 5], [5, 6], [5, 7]]}
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 3, "trajectory": [[7, 5], [7, 6], [7, 5], [7, 6], [7, 7]]}
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 4, "trajectory": [[9, 0], [9, 1], [9, 0], [9, 1], [9, 2]]}
+{"dataset": "examples", "scenario": "mixed", "num_agents": 6, "agent_idx": 5, "trajectory": [[0, 9], [1, 9], [0, 9], [1, 9], [2, 9]]}
