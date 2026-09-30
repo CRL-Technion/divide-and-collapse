@@ -84,7 +84,7 @@ scripts/          data regeneration and Judgelight setup
 tests/            unit, property, regression, and stress tests
 ```
 
-## Reproducing the paper
+## Reproducing the paper's experiments
 
 Full instructions, with expected numbers, are in
 [`docs/reproduce.md`](docs/reproduce.md). In short:

@@ -1,4 +1,4 @@
-# Reproducing the paper
+# Reproducing the paper's experiments
 
 Every number, table, and figure in the paper comes from the pipeline below.
 The expected values are stated so you can diff your run against ours.

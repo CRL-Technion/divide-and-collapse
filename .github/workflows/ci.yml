@@ -25,23 +25,40 @@ jobs:
       - name: install uv
         uses: astral-sh/setup-uv@v3
 
-      - name: set up python
-        run: uv python install ${{ matrix.python-version }}
+      # Install into a virtual environment rather than the interpreter on
+      # PATH: the Ubuntu runners' system Python is externally managed
+      # (PEP 668) and refuses installs, and `--system` would ignore the
+      # matrix version even where it succeeds.
+      - name: create environment
+        run: uv venv --python ${{ matrix.python-version }}
 
       - name: install project
-        run: uv pip install --system -e ".[dev]"
+        run: uv pip install -e ".[dev]"
+
+      - name: put the environment on PATH (POSIX)
+        if: runner.os != 'Windows'
+        run: echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+
+      - name: put the environment on PATH (Windows)
+        if: runner.os == 'Windows'
+        run: Add-Content -Path $env:GITHUB_PATH -Value "$PWD\.venv\Scripts"
+
+      # Guards the matrix: without this, a misconfigured install can test the
+      # same interpreter in every cell while the job labels claim otherwise.
+      - name: confirm the interpreter matches the matrix
+        run: python -c "import sys; print(sys.version); assert sys.version.startswith('${{ matrix.python-version }}')"
 
       - name: ruff
-        run: uv run --no-project ruff check src tests examples
+        run: ruff check src tests examples
 
       - name: black
-        run: uv run --no-project black --check src tests examples
+        run: black --check src tests examples
 
       - name: mypy
-        run: uv run --no-project mypy
+        run: mypy
 
       - name: pytest (not slow)
-        run: uv run --no-project pytest -m "not slow"
+        run: pytest -m "not slow"
 
   stress:
     name: stress tests (PR + nightly)
@@ -55,6 +72,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
-      - run: uv python install 3.12
-      - run: uv pip install --system -e ".[dev]"
-      - run: uv run --no-project pytest -m slow
+      - run: uv venv --python 3.12
+      - run: uv pip install -e ".[dev]"
+      - run: echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+      - run: pytest -m slow
